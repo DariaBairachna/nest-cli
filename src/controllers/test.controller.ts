@@ -1,11 +1,11 @@
 
-import { Controller, Get, Query, Post, Body, Res, HttpStatus, HttpException, UseFilters, ForbiddenException } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body, Res, HttpStatus, HttpException } from '@nestjs/common';
 import { Response } from 'express';
-import { TestService } from './test.service';
-import { CreateModel } from './interface/test.interface';
-import { HttpExceptionFilter } from 'src/common/http-exception.filter';
+import { TestService } from '../services/test.service';
 
-
+export interface CreateModel {
+  num: number;
+}
 @Controller('test')
 export class TestController {
   constructor(private readonly testService: TestService) { }
@@ -16,8 +16,7 @@ export class TestController {
 
   // }
 
-
-  @Get("debug")
+  @Get('debug')
   findAll() {
     throw new HttpException({
       status: HttpStatus.FORBIDDEN,
@@ -31,11 +30,12 @@ export class TestController {
     return this.testService.result;
   }
 
-  @Post("create")
+  @Post('create')
   // @UseFilters(new HttpExceptionFilter())
+  // tslint:disable-next-line:no-shadowed-variable
   async create(@Body() CreateModel: CreateModel, @Res() res: Response) {
     this.testService.calculate(CreateModel);
     res.json(this.testService.result);
     // throw new ForbiddenException();
   }
-} 
+}

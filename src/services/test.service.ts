@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 export class TestService {
  
     constructor(@Inject('DATABASE_CONNECTION') private databaseContext: any) {
-        mongoose.connect('mongodb+srv://admin_dasha:<123qwe>@cluster0-3ruic.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+       
     }
   
 

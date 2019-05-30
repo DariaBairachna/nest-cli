@@ -1,14 +1,22 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { TestController } from './test/test.controller';
-import { TestService } from './test/test.service';
 import { databaseProviders, LoggerMiddleware } from './common';
+import { AppService, TestService } from './services';
+import { AppController, TestController } from './controllers';
+import { BookRepository, AuthorRepository } from './repositories';
 @Module({
   imports: [
   ],
-  controllers: [AppController, TestController],
-  providers: [AppService, TestService, ...databaseProviders]
+  controllers: [
+    AppController,
+    TestController,
+  ],
+  providers: [
+    AppService,
+    TestService,
+    ...databaseProviders,
+    BookRepository,
+    AuthorRepository,
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
@@ -16,6 +24,4 @@ export class AppModule implements NestModule {
       .apply(LoggerMiddleware)
       .forRoutes(TestController);
   }
-
-
 }
