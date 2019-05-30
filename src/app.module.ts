@@ -3,12 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TestController } from './test/test.controller';
 import { TestService } from './test/test.service';
-import { LoggerMiddleware } from './common/logger.middleware';
-
+import { databaseProviders, LoggerMiddleware } from './common';
 @Module({
-  imports: [],
+  imports: [
+  ],
   controllers: [AppController, TestController],
-  providers: [AppService, TestService],
+  providers: [AppService, TestService, ...databaseProviders]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer): void {
@@ -16,6 +16,6 @@ export class AppModule implements NestModule {
       .apply(LoggerMiddleware)
       .forRoutes(TestController);
   }
- 
+
+
 }
- 
