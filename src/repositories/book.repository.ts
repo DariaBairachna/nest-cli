@@ -1,10 +1,13 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { BookEntity } from '../entities';
-import { Model } from 'mongoose';
+import { BookEntity, BookSchema } from '../entities';
+import { Model, Mongoose } from 'mongoose';
 
 @Injectable()
 export class BookRepository {
-    constructor(@Inject('BOOK_MODEL') private readonly bookModel: Model<BookEntity>) { }
+    private bookModel: Model<BookEntity>;
+    constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
+        this.bookModel = databaseContext.model('Book', BookSchema);
+    }
 
     async findById(id: string) {
         const book = await this.bookModel.findById(id);

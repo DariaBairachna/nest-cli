@@ -2,9 +2,7 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { databaseProviders, LoggerMiddleware } from './common';
 import { AppService, TestService } from './services';
 import { AppController, TestController } from './controllers';
-import { AuthorRepository } from './repositories/author.repository';
-import { BookRepository } from './repositories/book.repository';
-// import { BookRepository, AuthorRepository } from './repositories';
+import { BookRepository, AuthorRepository } from './repositories';
 @Module({
   imports: [
   ],

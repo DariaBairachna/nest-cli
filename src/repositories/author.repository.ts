@@ -1,13 +1,16 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Model } from 'mongoose';
-import { AuthorEntity } from '../entities';
+import { Model, Mongoose } from 'mongoose';
+import { AuthorEntity, AuthorSchema } from '../entities';
 
 @Injectable()
 export class AuthorRepository {
-    constructor(@Inject('AUTHOR_MODEL') private readonly bookModel: Model<AuthorEntity>) { }
+    private authorModel: Model<AuthorEntity>;
+    constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
+        this.authorModel = databaseContext.model('Author', AuthorSchema);
+    }
 
     async GetListByBookId(id: string): Promise<AuthorEntity[]> {
-        const book: any = await this.bookModel.aggregate([
+        const book: any = await this.authorModel.aggregate([
             {
                 $lookup:
                 {
