@@ -2,7 +2,9 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { databaseProviders, LoggerMiddleware } from './common';
 import { AppService, TestService } from './services';
 import { AppController, TestController } from './controllers';
-import { BookRepository, AuthorRepository } from './repositories';
+import { AuthorRepository } from './repositories/author.repository';
+import { BookRepository } from './repositories/book.repository';
+// import { BookRepository, AuthorRepository } from './repositories';
 @Module({
   imports: [
   ],
@@ -14,8 +16,8 @@ import { BookRepository, AuthorRepository } from './repositories';
     AppService,
     TestService,
     ...databaseProviders,
-    BookRepository,
     AuthorRepository,
+    BookRepository,
   ],
 })
 export class AppModule implements NestModule {
