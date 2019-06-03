@@ -2,7 +2,6 @@ import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 
 export const BookSchema = new mongoose.Schema({
-    _id: String,
     title: String,
     author: Array,
     publishing: String,
@@ -10,11 +9,13 @@ export const BookSchema = new mongoose.Schema({
     price: String,
 });
 
-export interface BookEntity extends Document {
-    _id: string;
+export interface BookEntity {
     title: string;
     author: [];
     publishing: string;
     year: string;
     price: string;
+}
+
+export interface BookDocument extends Document, BookEntity {
 }

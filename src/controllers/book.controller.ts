@@ -8,13 +8,12 @@ export class BookController {
   constructor(private readonly bookService: BookService) { }
 
   @Get('getBook')
-  find(@Query() queryParams) {
-    return this.bookService.findById(queryParams.id);
+  async find(@Query() queryParams) {
+    return await this.bookService.findById(queryParams.id);
   }
 
   @Post('create')
    async create(@Body() bookModel: BookModel) {
-    console.log(JSON.stringify(bookModel));
     return bookModel;
   }
 }
