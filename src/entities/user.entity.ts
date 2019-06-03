@@ -6,6 +6,6 @@ export const UserSchema = new mongoose.Schema({
 });
 
 export interface UserEntity extends Document {
-    username:String,
-    passwordHash:String,
+    username: string,
+    passwordHash: string,
 }

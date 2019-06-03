@@ -6,11 +6,16 @@ import { Model, Mongoose } from 'mongoose';
 export class BookRepository {
     private bookModel: Model<BookEntity>;
     constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
-        this.bookModel = databaseContext.model('Book', BookSchema);
+
+        this.bookModel = this.databaseContext.model('Book', BookSchema);       
+
     }
 
     async findById(id: string) {
+        console.log(id);
         const book = await this.bookModel.findById(id);
+        console.log(book);
         return book;
     }
+ 
 }

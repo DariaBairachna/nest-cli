@@ -1,7 +1,7 @@
 import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { databaseProviders, LoggerMiddleware } from './common';
-import { AppService, TestService } from './services';
-import { AppController, TestController } from './controllers';
+import { AppService, TestService, BookService } from './services';
+import { AppController, TestController, BookController } from './controllers';
 import { BookRepository, AuthorRepository } from './repositories';
 @Module({
   imports: [
@@ -9,10 +9,12 @@ import { BookRepository, AuthorRepository } from './repositories';
   controllers: [
     AppController,
     TestController,
+    BookController,
   ],
-  providers: [
+  providers: [ 
     AppService,
     TestService,
+    BookService,
     ...databaseProviders,
     AuthorRepository,
     BookRepository,
@@ -24,4 +26,5 @@ export class AppModule implements NestModule {
       .apply(LoggerMiddleware)
       .forRoutes(TestController);
   }
+ 
 }

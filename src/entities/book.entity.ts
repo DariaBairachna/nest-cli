@@ -7,7 +7,7 @@ export const BookSchema = new mongoose.Schema({
     author: Array,
     publishing: String,
     year: String,
-    prise: String,
+    price: String,
 });
 
 export interface BookEntity extends Document {
@@ -16,7 +16,5 @@ export interface BookEntity extends Document {
     author: [];
     publishing: string;
     year: string;
-    prise: string;
+    price: string;
 }
-
-

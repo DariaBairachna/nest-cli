@@ -2,5 +2,8 @@ import { AuthorModel } from '.';
 
 export class BookModel {
     title: string;
-    authors: AuthorModel[];
+    authors: string[];
+    publishing: string;
+    year: string;
+    price: string;
 }

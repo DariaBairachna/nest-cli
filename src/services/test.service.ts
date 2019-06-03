@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 @Injectable()
 export class TestService {
  
-    constructor(@Inject('DATABASE_CONNECTION') private databaseContext: any) {
-       
-    }
+    constructor(@Inject('DATABASE_CONNECTION') private databaseContext: any) {  }
   
 
     public result: string;

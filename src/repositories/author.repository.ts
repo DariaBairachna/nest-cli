@@ -6,10 +6,11 @@ import { AuthorEntity, AuthorSchema } from '../entities';
 export class AuthorRepository {
     private authorModel: Model<AuthorEntity>;
     constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
-        this.authorModel = databaseContext.model('Author', AuthorSchema);
+        this.authorModel = this.databaseContext.model('Author', AuthorSchema);
     }
 
     async GetListByBookId(id: string): Promise<AuthorEntity[]> {
+        console.log('testtttttttttttttttttttttttttttttttt');
         const book: any = await this.authorModel.aggregate([
             {
                 $lookup:
@@ -17,7 +18,7 @@ export class AuthorRepository {
                     from: 'authorInBooks',
                     localField: 'bookId',
                     foreignField: 'id',
-                    as: 'authors',
+                    as: 'author',
                 },
             },
         ]);
