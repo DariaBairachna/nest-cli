@@ -11,6 +11,10 @@ export class BookController {
   find(@Query() queryParams) {
     return this.bookService.findById(queryParams.id);
   }
+  // @Get('getBook')
+  // find(@Query() queryParams) {
+  //   return this.bookService.findOne(queryParams.id);
+  // }
 
   @Post('create')
    async create(@Body() bookModel: BookModel) {
