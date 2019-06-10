@@ -1,4 +1,6 @@
-export interface AuthorModel {
-    _id: string;
+import { ApiModelProperty } from '@nestjs/swagger';
+
+export class AuthorModel {
+    @ApiModelProperty()
     name: string;
 }

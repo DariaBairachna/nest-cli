@@ -1,16 +1,15 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export class BookModel {
+export class UserModel{
     @ApiModelProperty()
-    readonly title: string;
+    name: string;
 
     @ApiModelProperty()
-    readonly publishing: string;
+    email: string;
 
     @ApiModelProperty()
-    readonly year: string;
+    password: string;
 
     @ApiModelProperty()
-    readonly price: string;
-
+    role: string;
 }

@@ -2,10 +2,18 @@ import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
-    title: String,
+    name: String,
+    email: String,
+    password: String,
+    role: String,
 });
 
-export interface UserEntity extends Document {
-    username: string,
-    passwordHash: string,
+export interface UserEntity{
+    name: string;
+    email: string;
+    password: string;
+    role: string;
+}
+
+export interface UserDocument extends Document, UserEntity {
 }

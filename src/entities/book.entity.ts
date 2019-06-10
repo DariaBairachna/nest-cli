@@ -3,7 +3,6 @@ import { Document } from 'mongoose';
 
 export const BookSchema = new mongoose.Schema({
     title: String,
-    author: Array,
     publishing: String,
     year: String,
     price: String,
@@ -11,7 +10,6 @@ export const BookSchema = new mongoose.Schema({
 
 export interface BookEntity {
     title: string;
-    author: [];
     publishing: string;
     year: string;
     price: string;

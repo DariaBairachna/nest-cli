@@ -1,25 +1,26 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { BookEntity, BookSchema, BookDocument } from '../entities';
 import { Model, Mongoose } from 'mongoose';
-import { BookModel } from '../models';
+import { UserDocument, UserSchema, UserEntity } from '../entities';
+import { UserModel } from '../models';
+
 
 @Injectable()
-export class BookRepository {
-    private bookModel: Model<BookDocument>;
+export class UserRepository {
+    private bookModel: Model<UserDocument>;
     constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
-        this.bookModel = this.databaseContext.model('books', BookSchema);
+        this.bookModel = this.databaseContext.model('users', UserSchema);
     }
-    async findById(id: string): Promise<BookModel> {
+    async findById(id: string): Promise<UserModel> {
         const book = await this.bookModel.findById(id);
         return book;
     }
 
-    async create(bookItem: BookEntity): Promise<BookEntity> {
+    async create(bookItem: UserEntity): Promise<UserEntity> {
         const book = await this.bookModel.create(bookItem);
         return book;
     }
 
-    async delete(id: string): Promise<BookModel>{
+    async delete(id: string): Promise<UserModel>{
         const book = await this.bookModel.findByIdAndRemove(id);
         return book;
     }
