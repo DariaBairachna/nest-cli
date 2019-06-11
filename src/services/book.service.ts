@@ -13,12 +13,7 @@ export class BookService {
             throw Error(`Can't find this book!`);
         }
         const authors = await this.authorInBookRepository.GetListByBookId(id);
-        const authorModels = authors.map(item => {
-            const authorModel: AuthorModel = {
-                name: item.name,
-            };
-            return authorModel;
-        });
+         
         const bookModel: BookModel = {
             title: book.title,
             publishing: book.publishing,

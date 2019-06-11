@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@nestjs/common';
 import { Model, Mongoose } from 'mongoose';
 import { AuthorEntity, AuthorInBookSchema, AuthorInBookEntityDocument, BookDocument, BookSchema } from '../entities';
 import {  AuthorInBookModel } from '../models';
+import { BookEntity } from 'dist/entities';
 
 @Injectable()
 export class AuthorInBookRepository {
@@ -16,15 +17,15 @@ export class AuthorInBookRepository {
         const createAgrigate = await this.authorInBookModel.create(authorInBook);
         return createAgrigate;
     }
-    async GetListByBookId(id: string): Promise<AuthorEntity[]> {
+    async GetListByBookId(id: string): Promise<BookEntity> {
         const book: any = await this.bookModel.aggregate([
             {
                 $lookup:
                 {
                     from: 'authors',
-                    localField: 'authorId',
-                    foreignField: id ,
-                    as: 'authors',
+                    localField:  'authorId',
+                    foreignField: '_id',
+                    as: 'authorInBook',
                 },
             },
         ]);
