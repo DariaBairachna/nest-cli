@@ -9,7 +9,7 @@ export class BookRepository {
     constructor(@Inject('DATABASE_CONNECTION') private readonly databaseContext: Mongoose) {
         this.bookModel = this.databaseContext.model('books', BookSchema);
     }
-    async findById(id: string): Promise<BookModel> {
+    async findById(id: string): Promise<BookEntity> {
         const book = await this.bookModel.findById(id);
         return book;
     }
@@ -19,7 +19,7 @@ export class BookRepository {
         return book;
     }
 
-    async delete(id: string): Promise<BookModel>{
+    async delete(id: string): Promise<BookEntity> {
         const book = await this.bookModel.findByIdAndRemove(id);
         return book;
     }

@@ -18,11 +18,11 @@ export class AuthorController {
   async create(@Body() author: AuthorModel) {
     return await this.authorService.create(author);
   }
-  @Post('createAgrigate')
-  async createAgrigate(@Body() authorInBook: AuthorInBookModel) {
-    console.log(authorInBook)
-    return await this.authorInBookRepository.createAgrigate(authorInBook);
-  }
+  // @Post('createAgrigate')
+  // async createAgrigate(@Body() authorInBook: AuthorInBookModel) {
+  //   console.log(authorInBook)
+  //   return await this.authorInBookRepository.createAgrigate(authorInBook);
+  // }
   @Post('deleteAuthor')
   async delete(@Body() id: string) {
     return await this.authorService.delete(id);
