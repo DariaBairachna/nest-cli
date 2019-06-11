@@ -9,7 +9,7 @@ export class BookController {
   constructor(private readonly bookService: BookService) { }
 
   @Get('getBook')
-  async find(@Query() queryParams  ) {
+  async find(@Query() queryParams) {
     return await this.bookService.findById(queryParams.id);
   }
 

@@ -11,11 +11,11 @@ export const BookSchema = new mongoose.Schema({
 });
 
 export interface BookEntity {
+    id?: any;
     title: string;
     publishing: string;
     year: string;
     price: string;
-    authorId: AuthorModel[];
 }
 
 export interface BookDocument extends Document, BookEntity {

@@ -1,14 +1,16 @@
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
+import { ObjectID } from 'bson';
 
 export const AuthorInBookSchema = new mongoose.Schema({
-    bookId: String,
-    authorId: Array,
+    bookId: ObjectID,
+    authorId: ObjectID,
 });
 
 export interface AuthorInBookEntity {
-    bookId: string;
-    authorId: string[];
+    id?: any;
+    bookId: ObjectID;
+    authorId: ObjectID;
 }
 
 export interface AuthorInBookEntityDocument extends Document, AuthorInBookEntity {
