@@ -3,10 +3,13 @@ import { Document } from 'mongoose';
 
 export const AuthorInBookSchema = new mongoose.Schema({
     bookId: String,
-    authorId: String,
+    authorId: Array,
 });
 
-export interface AuthorInBookEntity extends Document {
+export interface AuthorInBookEntity {
     bookId: string;
-    authorId: string;
+    authorId: string[];
+}
+
+export interface AuthorInBookEntityDocument extends Document, AuthorInBookEntity {
 }

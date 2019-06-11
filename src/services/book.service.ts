@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { BookRepository, AuthorRepository } from '../repositories';
+import { BookRepository, AuthorRepository, AuthorInBookRepository } from '../repositories';
 import { BookModel, AuthorModel } from 'src/models';
 import { BookEntity } from 'src/entities';
 @Injectable()
 export class BookService {
-    constructor(private readonly bookRepository: BookRepository, private readonly authorRepository: AuthorRepository,
+    constructor(private readonly bookRepository: BookRepository, private readonly authorInBookRepository: AuthorInBookRepository,
     ) {}
 
     async findById(id: string): Promise<BookModel> {
@@ -12,7 +12,7 @@ export class BookService {
         if (!book) {
             throw Error(`Can't find this book!`);
         }
-        const authors = await this.authorRepository.GetListByBookId(id);
+        const authors = await this.authorInBookRepository.GetListByBookId(id);
         const authorModels = authors.map(item => {
             const authorModel: AuthorModel = {
                 name: item.name,
@@ -24,10 +24,11 @@ export class BookService {
             publishing: book.publishing,
             year: book.year,
             price: book.price,
+            authorId: authorModels,
         };
         return bookModel;
     }
-    async create(bookItem: BookEntity): Promise<BookEntity> {
+    async create(bookItem: BookEntity): Promise<BookModel> {
         const book = await this.bookRepository.create(bookItem);
         if (!book) {
             throw Error(`Can't find this book!`);
@@ -38,6 +39,7 @@ export class BookService {
             publishing: book.publishing,
             year: book.year,
             price: book.price,
+            authorId: book.authorId,
         };
         return bookModel;
     }

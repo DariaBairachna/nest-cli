@@ -1,5 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-
+import { AuthorModel } from '.';
 export class BookModel {
     @ApiModelProperty()
     readonly title: string;
@@ -12,5 +12,8 @@ export class BookModel {
 
     @ApiModelProperty()
     readonly price: string;
+
+    @ApiModelProperty()
+    readonly authorId: AuthorModel[];
 
 }

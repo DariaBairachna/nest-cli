@@ -14,7 +14,7 @@ export class BookController {
   }
 
   @Post('createBook')
-   async create(@Body() bookItem: BookModel) {
+   async create(@Body() bookItem: BookEntity) {
     return await this.bookService.create(bookItem);
   }
 

@@ -9,7 +9,7 @@ export class UserService {
     ) { }
 
     async findById(email: string): Promise<UserModel> {
-        const user = await this.userRepository.findById(email); 
+        const user = await this.userRepository.findById(email);
         if (!user) {
             throw Error(`Can't find this user!`);
         }
@@ -21,6 +21,7 @@ export class UserService {
         };
         return userModel;
     }
+
     async create(userItem: UserEntity): Promise<UserEntity> {
         const user = await this.userRepository.create(userItem);
         if (!user) {

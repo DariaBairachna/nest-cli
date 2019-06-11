@@ -2,8 +2,9 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { databaseProviders, LoggerMiddleware } from './common';
 import { AppService, BookService, AuthorService, UserService } from './services';
 import { AppController, BookController, AuthorController, UserController } from './controllers';
-import { BookRepository, AuthorRepository, UserRepository } from './repositories';
+import { BookRepository, AuthorRepository, UserRepository, AuthorInBookRepository } from './repositories';
 import {JwtModule} from '@nestjs/jwt';
+import { AuthService } from './services/auth.service';
 
 @Module({
   imports: [
@@ -20,10 +21,12 @@ import {JwtModule} from '@nestjs/jwt';
     BookService,
     UserService,
     AuthorService,
+    AuthService,
     ...databaseProviders,
     AuthorRepository,
     BookRepository,
     UserRepository,
+    AuthorInBookRepository,
   ],
 })
 export class AppModule implements NestModule {
